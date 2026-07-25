@@ -1,0 +1,7 @@
+{
+  "environment": "dev",
+  "api_base_url": "https://reqres.in",
+  "backoffice_base_url": "https://the-internet.herokuapp.com",
+  "app_base_url": "https://www.saucedemo.com",
+  "note": "Placeholder. Di kerja nyata, isi dengan base URL dev environment perusahaan."
+}

@@ -1,0 +1,19 @@
+{
+  "name": "qa-automation-demo",
+  "version": "1.0.0",
+  "description": "Demo kickstarter project untuk belajar Playwright sebelum implementasi ke environment kerja nyata (dev/staging/prod, API core/back office/end user app)",
+  "scripts": {
+    "test": "playwright test",
+    "test:api": "playwright test api-tests",
+    "test:backoffice": "playwright test backoffice-tests",
+    "test:app": "playwright test app-tests",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^20.0.0"
+  }
+}
