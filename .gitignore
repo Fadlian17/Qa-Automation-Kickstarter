@@ -2,3 +2,5 @@ node_modules/
 dist/
 .env
 playwright-report/
+package-lock.json
+AGENT_INSTRUCTIONS.md
