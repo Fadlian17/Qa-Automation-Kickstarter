@@ -4,3 +4,6 @@ dist/
 playwright-report/
 package-lock.json
 AGENT_INSTRUCTIONS.md
+.opencode
+
+

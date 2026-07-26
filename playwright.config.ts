@@ -32,7 +32,7 @@ export default defineConfig({
       name: 'api',
       testDir: './api-tests',
       use: {
-        baseURL: 'https://reqres.in',
+        baseURL: 'https://dummyjson.com',
       },
     },
     {

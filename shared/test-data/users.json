@@ -17,11 +17,15 @@
   },
   "api": {
     "valid_login": {
-      "email": "eve.holt@reqres.in",
-      "password": "cityslicka"
+      "username": "emilys",
+      "password": "emilyspass"
     },
     "invalid_login": {
-      "email": "eve.holt@reqres.in"
+      "username": "invalid_user",
+      "password": "wrong_password"
+    },
+    "missing_fields": {
+      "username": "standard_user"
     }
   }
 }

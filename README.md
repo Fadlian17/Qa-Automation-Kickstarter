@@ -2,12 +2,12 @@
 
 Project demo Playwright untuk latihan sebelum implementasi automation di environment kerja nyata.
 Struktur project ini sengaja dibuat **mirip** dengan setup yang akan dipakai di pekerjaan (API Core, Back Office, End User App, multi-environment) tapi menggunakan situs demo publik yang aman untuk latihan.
-
+n
 ## Studi Kasus
 
 | Layer | Target | Representasi |
 |---|---|---|
-| API Core | https://reqres.in | REST API (login, CRUD user) |
+| API Core | API Source https://dummyjson.com/ | Dummy REST API (login, Cart, Checkout) |
 | Back Office | https://the-internet.herokuapp.com | Admin login, tabel data, upload file |
 | End User App | https://www.saucedemo.com | Login, cart, checkout flow |
 
