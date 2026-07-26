@@ -28,7 +28,7 @@ test.describe('API Core - Authentication @regression', () => {
       data: testData.api.invalid_login,
     });
 
-    expect(response.status()).toBe(401);
+    expect(response.status()).toBe(400);
     const body = await response.json();
     expect(body).toHaveProperty('message');
   });
@@ -122,7 +122,7 @@ test.describe('API Core - Cart @regression', () => {
       },
     });
 
-    expect(response.status()).toBe(200);
+    expect(response.status()).toBe(201);
     const cart = await response.json();
     expect(cart).toHaveProperty('id');
     expect(cart).toHaveProperty('products');

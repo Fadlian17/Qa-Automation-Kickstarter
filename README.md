@@ -41,7 +41,8 @@ qa-automation-demo/
 ├── app-tests/                # test End User App
 ├── shared/
 │   ├── pages/                # Page Object Model
-│   └── test-data/            # data test terpusat (tidak hardcode di test)
+│   ├── test-data/            # data test terpusat (tidak hardcode di test)
+│   └── apidata/              # API Collection
 ├── playwright.config.ts
 └── package.json
 ```

@@ -5,6 +5,8 @@ playwright-report/
 package-lock.json
 AGENT_INSTRUCTIONS.md
 .opencode
-
-
 AGENT_INSTRUCTIONS.md
+allure-results/
+allure-report/
+Allure_AGENT_INSTRUCTIONS.md
+
