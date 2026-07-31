@@ -1,6 +1,6 @@
 {
   "environment": "local",
-  "api_base_url": "https://reqres.in",
+  "api_base_url": "https://dummyjson.com",
   "backoffice_base_url": "https://the-internet.herokuapp.com",
   "app_base_url": "https://www.saucedemo.com",
   "note": "Di project demo ini, 'local' mengarah ke situs demo publik. Di project kerja nyata nanti, ganti dengan URL environment dev internal."

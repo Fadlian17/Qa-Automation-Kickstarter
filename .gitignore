@@ -2,11 +2,12 @@ node_modules/
 dist/
 .env
 playwright-report/
-package-lock.json
-AGENT_INSTRUCTIONS.md
+test-results/
 .opencode
 AGENT_INSTRUCTIONS.md
 allure-results/
 allure-report/
 Allure_AGENT_INSTRUCTIONS.md
-
+.DS_Store
+**/.DS_Store
+IMPROVEMENTS.md

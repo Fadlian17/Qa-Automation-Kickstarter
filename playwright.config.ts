@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { config } from './config';
 
 /**
  * Config ini meniru struktur environment berjenjang (local/dev/staging/prod)
@@ -39,7 +40,7 @@ export default defineConfig({
       name: 'api',
       testDir: './api-tests',
       use: {
-        baseURL: 'https://dummyjson.com',
+        baseURL: config.api_base_url,
       },
     },
     {
@@ -47,7 +48,7 @@ export default defineConfig({
       testDir: './backoffice-tests',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'https://the-internet.herokuapp.com',
+        baseURL: config.backoffice_base_url,
       },
     },
     {
@@ -55,7 +56,7 @@ export default defineConfig({
       testDir: './app-tests',
       use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'https://www.saucedemo.com',
+        baseURL: config.app_base_url,
       },
     },
   ],
