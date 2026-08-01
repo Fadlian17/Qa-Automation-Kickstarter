@@ -26,6 +26,36 @@
     },
     "missing_fields": {
       "username": "standard_user"
+    },
+    "users": {
+      "existing_id": 1,
+      "invalid_id": 999999,
+      "update_user": {
+        "firstName": "Jo",
+        "lastName": "Johnson",
+        "age": 30,
+        "email": "emily.johnson@x.dummyjson.com"
+      },
+      "partial_update": {
+        "age": 35
+      },
+      "new_user": {
+        "firstName": "QA",
+        "lastName": "Automation",
+        "age": 25,
+        "email": "qa.automation@x.dummyjson.com"
+      },
+      "search_term": "emily",
+      "no_result_term": "zzzznothing",
+      "filter": {
+        "key": "role",
+        "value": "admin"
+      },
+      "pagination": {
+        "limit": 2,
+        "skip": 5
+      },
+      "select_fields": "firstName,email"
     }
   }
 }

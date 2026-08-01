@@ -1,0 +1,81 @@
+{
+  "users": {
+    "standard": {
+      "username": "standard_user",
+      "password": "secret_sauce"
+    },
+    "locked_out": {
+      "username": "locked_out_user",
+      "password": "secret_sauce"
+    },
+    "problem": {
+      "username": "problem_user",
+      "password": "secret_sauce"
+    },
+    "visual": {
+      "username": "visual_user",
+      "password": "secret_sauce"
+    },
+    "error": {
+      "username": "error_user",
+      "password": "secret_sauce"
+    },
+    "performance_glitch": {
+      "username": "performance_glitch_user",
+      "password": "secret_sauce"
+    },
+    "invalid": {
+      "username": "wrong_user",
+      "password": "wrong_pass"
+    }
+  },
+  "products": {
+    "backpack": "Sauce Labs Backpack",
+    "bike_light": "Sauce Labs Bike Light",
+    "bolt_tshirt": "Sauce Labs Bolt T-Shirt",
+    "fleece_jacket": "Sauce Labs Fleece Jacket",
+    "onesie": "Sauce Labs Onesie",
+    "red_tshirt": "Test.allTheThings() T-Shirt (Red)",
+    "expected": {
+      "backpack_price": "$29.99",
+      "bike_light_price": "$9.99",
+      "total_count": 6,
+      "cheapest": "$7.99",
+      "most_expensive": "$49.99"
+    }
+  },
+  "checkout": {
+    "valid_info": {
+      "firstName": "QA",
+      "lastName": "Tester",
+      "postalCode": "12345"
+    },
+    "missing_first_name": {
+      "firstName": "",
+      "lastName": "Tester",
+      "postalCode": "12345"
+    },
+    "missing_last_name": {
+      "firstName": "QA",
+      "lastName": "",
+      "postalCode": "12345"
+    },
+    "missing_postal_code": {
+      "firstName": "QA",
+      "lastName": "Tester",
+      "postalCode": ""
+    }
+  },
+  "sort": {
+    "az": "az",
+    "za": "za",
+    "lohi": "lohi",
+    "hilo": "hilo"
+  },
+  "error_messages": {
+    "username_required": "Epic sadface: Username is required",
+    "password_required": "Epic sadface: Password is required",
+    "invalid_credentials": "Epic sadface: Username and password do not match any user in this service",
+    "locked_out": "Epic sadface: Sorry, this user has been locked out."
+  }
+}

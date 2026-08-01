@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../shared/fixtures';
 import testData from '../shared/test-data/users.json';
 
 /**

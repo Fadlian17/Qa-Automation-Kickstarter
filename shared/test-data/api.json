@@ -1,0 +1,144 @@
+{
+  "auth": {
+    "valid_login": {
+      "username": "emilys",
+      "password": "emilyspass"
+    },
+    "invalid_login": {
+      "username": "invalid_user",
+      "password": "wrong_password"
+    },
+    "invalid_token": "invalid-token-value",
+    "invalid_refresh_token": "invalid-refresh-token"
+  },
+  "products": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "category": "smartphones",
+    "unknown_category": "unknown-cat-xyz",
+    "search_term": "phone",
+    "no_result_term": "zzzznothing",
+    "new_product": {
+      "title": "QA Test Product",
+      "price": 99,
+      "category": "accessories"
+    },
+    "update_product": {
+      "title": "QA Updated Product"
+    },
+    "partial_update": {
+      "price": 1200
+    },
+    "pagination": {
+      "limit": 5,
+      "skip": 5
+    },
+    "select_fields": "title,price"
+  },
+  "carts": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "user_id": 1,
+    "invalid_user_id": 999,
+    "add_payload": {
+      "userId": 1,
+      "products": [{ "id": 144, "quantity": 4 }]
+    },
+    "empty_products_payload": {
+      "userId": 1,
+      "products": []
+    },
+    "update_merge_false": {
+      "merge": false,
+      "products": [{ "id": 1, "quantity": 3 }]
+    },
+    "update_merge_true": {
+      "merge": true,
+      "products": [{ "id": 1, "quantity": 1 }]
+    }
+  },
+  "users": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "update_user": {
+      "firstName": "Jo",
+      "lastName": "Johnson",
+      "age": 30,
+      "email": "emily.johnson@x.dummyjson.com"
+    },
+    "partial_update": {
+      "age": 35
+    },
+    "new_user": {
+      "firstName": "QA",
+      "lastName": "Automation",
+      "age": 25,
+      "email": "qa.automation@x.dummyjson.com"
+    },
+    "search_term": "emily",
+    "filter": {
+      "key": "role",
+      "value": "admin"
+    },
+    "pagination": {
+      "limit": 2,
+      "skip": 5
+    },
+    "select_fields": "firstName,email"
+  },
+  "recipes": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "search_term": "pizza",
+    "tag": "Pizza",
+    "meal_type": "dinner",
+    "new_recipe": {
+      "name": "QA Test Recipe",
+      "ingredients": ["Water", "Salt"]
+    },
+    "update_recipe": {
+      "name": "QA Updated Recipe"
+    }
+  },
+  "quotes": {
+    "existing_id": 1,
+    "invalid_id": 999999
+  },
+  "posts": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "search_term": "life",
+    "user_id": 1,
+    "new_post": {
+      "title": "QA Test Post",
+      "body": "QA body",
+      "userId": 1
+    },
+    "update_post": {
+      "title": "QA Updated Post"
+    }
+  },
+  "comments": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "post_id": 1,
+    "new_comment": {
+      "body": "QA Test Comment",
+      "postId": 1,
+      "userId": 1
+    }
+  },
+  "todos": {
+    "existing_id": 1,
+    "invalid_id": 999999,
+    "user_id": 1,
+    "new_todo": {
+      "todo": "QA Test Todo",
+      "completed": false,
+      "userId": 1
+    },
+    "update_todo": {
+      "completed": true
+    }
+  }
+}
