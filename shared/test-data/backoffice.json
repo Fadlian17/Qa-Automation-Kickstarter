@@ -1,0 +1,146 @@
+{
+  "dashboard": {
+    "heading": "Welcome to the-internet",
+    "subheading": "Available Examples",
+    "page_links": {
+      "login": "Form Authentication",
+      "tables": "Sortable Data Tables",
+      "upload": "File Upload",
+      "checkboxes": "Checkboxes",
+      "dropdown": "Dropdown List",
+      "add_remove": "Add/Remove Elements"
+    },
+    "module_links": {
+      "hovers": "Hovers",
+      "dynamic_controls": "Dynamic Controls",
+      "dynamic_loading": "Dynamic Loading",
+      "frames": "Nested Frames",
+      "javascript_alerts": "JavaScript Alerts"
+    }
+  },
+  "table": {
+    "row_count": 4,
+    "last_names": ["Smith", "Bach", "Doe", "Conway"],
+    "first_names": ["John", "Frank", "Jason", "Tim"],
+    "dues": ["$50.00", "$51.00", "$100.00", "$50.00"],
+    "emails": ["jsmith@gmail.com", "fbach@yahoo.com", "jdoe@hotmail.com", "tconway@earthlink.net"],
+    "columns": {
+      "last_name": 0,
+      "first_name": 1,
+      "email": 2,
+      "due": 3
+    }
+  },
+  "upload": {
+    "file_name": "dummy-upload.txt",
+    "alt_file_name": "laporan-bulanan.txt",
+    "file_content": "ini file dummy untuk test upload"
+  },
+  "checkboxes": {
+    "total": 2,
+    "default_checked_index": 1,
+    "default_unchecked_index": 0
+  },
+  "dropdown": {
+    "default_value": "",
+    "option1_label": "Option 1",
+    "option2_label": "Option 2",
+    "option1_value": "1",
+    "option2_value": "2"
+  },
+  "add_remove": {
+    "add_count": 3,
+    "add_text": "Add Element",
+    "delete_text": "Delete"
+  },
+  "inputs": {
+    "number": "42",
+    "decimal": "3.14",
+    "negative": "-7.5",
+    "arrow_up": "1",
+    "arrow_down": "-1"
+  },
+  "key_presses": {
+    "escape_result": "You entered: ESCAPE",
+    "shift_result": "You entered: SHIFT"
+  },
+  "hover": {
+    "figure_count": 3,
+    "user_prefix": "user"
+  },
+  "notification": {
+    "success": "Action successful",
+    "unsuccessful": "Action unsuccesful, please try again"
+  },
+  "dynamic_controls": {
+    "gone_message": "It's gone!",
+    "back_message": "It's back!",
+    "enabled_message": "It's enabled!",
+    "disabled_message": "It's disabled!"
+  },
+  "dynamic_loading": {
+    "finish_text": "Hello World!"
+  },
+  "drag_drop": {
+    "column_a": "A",
+    "column_b": "B"
+  },
+  "frames": {
+    "left": "LEFT",
+    "middle": "MIDDLE",
+    "right": "RIGHT",
+    "bottom": "BOTTOM",
+    "editor_content": "Your content goes here."
+  },
+  "js_alerts": {
+    "alert_text": "I am a JS Alert",
+    "alert_accept_result": "You successfully clicked an alert",
+    "confirm_accept_result": "You clicked: Ok",
+    "confirm_dismiss_result": "You clicked: Cancel",
+    "prompt_input": "QA Tester",
+    "prompt_accept_result": "You entered: QA Tester"
+  },
+  "windows": {
+    "link_text": "Click Here",
+    "new_window_heading": "New Window",
+    "new_window_url": "/windows/new"
+  },
+  "context_menu": {
+    "alert_text": "You selected a context menu"
+  },
+  "status_codes": {
+    "codes": ["200", "301", "404", "500"]
+  },
+  "redirect": {
+    "link_text": "here",
+    "target_url": "/status_codes"
+  },
+  "broken_images": {
+    "image_count": 3,
+    "broken_count": 2,
+    "valid_count": 1
+  },
+  "horizontal_slider": {
+    "min": "0.0",
+    "max": "5.0",
+    "step": "0.5"
+  },
+  "shadow_dom": {
+    "expected_text": "Let's have some different text!"
+  },
+  "infinite_scroll": {
+    "item_class": "jscroll-added"
+  },
+  "entry_ad": {
+    "modal_title": "This is a modal window",
+    "close_text": "Close"
+  },
+  "login": {
+    "secure_message": "You logged into a secure area!",
+    "invalid_password": "passwordSalah123",
+    "invalid_password_message": "Your password is invalid!",
+    "username_required_message": "Your username is invalid!",
+    "password_required_message": "Your password is invalid!",
+    "logout_url": "/logout"
+  }
+}
