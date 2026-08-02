@@ -11,14 +11,15 @@ Struktur project ini sengaja dibuat **mirip** dengan setup yang akan dipakai di 
 | Back Office | https://the-internet.herokuapp.com | Dashboard admin: login, tabel data, upload, form, widget interaktif |
 | End User App | https://www.saucedemo.com | Login, cart, checkout flow |
 
-## Cakupan Test
+## Cakupan Test Terkni
 
 | Layer | Jumlah Test | File Spec |
 |---|---|---|
 | API Core | 80 | `api-tests/` (10 file) |
 | Back Office | 74 | `backoffice-tests/` (25 file) |
 | End User App | 54 | `app-tests/` (7 file) |
-| **Total** | **208** | **42 file** |
+| Unit Test | 5 | `tests/` (1 file) |
+| **Total** | **213** | **43 file** |
 
 Setiap skenario dipetakan ke test data dan expected result di `docs/test-data-mapping-*.md`.
 
@@ -40,6 +41,7 @@ npm run test:smoke          # hanya test yang di-tag @smoke
 npm run test:regression     # hanya test yang di-tag @regression
 npm run test:headed         # jalankan dengan browser terlihat (bukan headless)
 npm run report              # buka laporan hasil test terakhir
+npm run report:pdf          # buat laporan PDF rekap dari run terakhir
 ```
 
 Contoh dengan environment staging:
@@ -49,6 +51,20 @@ TEST_ENV=staging npm test
 TEST_ENV=dev npx playwright test --project=api
 ```
 
+### Laporan PDF Rekap Test Run
+
+Setiap `npm test` menyimpan hasil ke `test-results/report.json` (JSON reporter). Dari file itu, PDF rekap bisa dibuat kapan pun:
+
+```bash
+npm run report:pdf                          # semua layer dalam satu PDF
+npm run report:pdf -- --project backoffice  # satu layer saja (api|backoffice|app)
+npm run report:pdf -- --input <path>        # pakai hasil run lain (mis. dari CI)
+```
+
+Output: `test-results/pdf/report-<YYYYMMDD-HHmmss>.pdf`
+
+Isi PDF: header (waktu & durasi run), kartu ringkasan (total/pass/fail/flaky/skipped/pass-rate), tabel breakdown per layer, dan daftar test gagal dengan lokasi & pesan error. PDF dibuat dari template HTML (`shared/pdf/template.ts`) dan dicetak via Chromium — cocok dibagikan ke stakeholder non-teknis.
+
 ## Struktur Folder
 
 ```
@@ -57,13 +73,16 @@ qa-automation-demo/
 ├── api-tests/               # test API Core (dummyjson.com)
 ├── backoffice-tests/        # test Back Office (the-internet.herokuapp.com)
 ├── app-tests/               # test End User App (saucedemo.com)
+├── tests/                   # unit test (agregasi PDF report)
+├── scripts/                 # script pendukung (generate PDF report)
 ├── shared/
 │   ├── pages/               # Page Object Model (satu file per halaman/komponen)
 │   ├── fixtures/            # custom fixture Playwright (misal auto-login app)
+│   ├── pdf/                 # template HTML & agregasi data untuk PDF report
 │   ├── test-data/           # data test terpusat (users.json, api.json, app.json, backoffice.json)
 │   └── apidata/             # API Collection
 ├── docs/                    # dokumentasi mapping skenario test → test data
-├── playwright.config.ts     # config utama, berisi 3 "project": api, backoffice, app
+├── playwright.config.ts     # config utama, berisi 4 "project": api, backoffice, app, unit
 └── package.json
 ```
 
@@ -105,6 +124,7 @@ Modul yang diotomatisasi di `backoffice-tests/` (target the-internet.herokuapp.c
 5. **API + UI dalam satu framework** — tidak perlu tool berbeda untuk API dan UI test
 6. **Custom fixture** — login berulang dibungkus fixture agar test fokus pada skenario
 7. **Multi-environment** — base URL per environment via `TEST_ENV` (`config/index.ts`)
+8. **PDF reporting** — hasil run dicetak jadi PDF (HTML template → Chromium `page.pdf()`)
 
 ## Langkah Setelah Demo Ini Stabil
 

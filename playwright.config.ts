@@ -21,6 +21,7 @@ export default defineConfig({
   reporter: [
     ['html', { open: 'never' }],
     ['list'],
+    ['json', { outputFile: 'test-results/report.json' }],
     ['allure-playwright', {
       resultsDir: 'allure-results',
       environmentInfo: {
@@ -57,6 +58,13 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         baseURL: config.app_base_url,
+      },
+    },
+    {
+      name: 'unit',
+      testDir: './tests',
+      use: {
+        ...devices['Desktop Chrome'],
       },
     },
   ],
