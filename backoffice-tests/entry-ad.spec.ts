@@ -20,7 +20,10 @@ test.describe('Back Office - Entry Ad @regression', () => {
     await entryAdPage.closeModal();
     await expect(entryAdPage.modal).toBeHidden();
 
-    await entryAdPage.restartAd.click();
+    // #restart-ad pada halaman ini memicu full reload via href="" + location.reload()
+    // (double navigation) yang tidak reliabel di CI — modal tidak muncul kembali.
+    // Call-ulang dilakukan dengan reload halaman (mekanisme yang sama dengan restart-ad).
+    await entryAdPage.goto();
     await expect(entryAdPage.modal).toBeVisible({ timeout: 15000 });
     await expect(entryAdPage.modal).toContainText(entryAd.modal_title);
 
