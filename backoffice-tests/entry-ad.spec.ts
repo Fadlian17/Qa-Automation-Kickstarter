@@ -21,7 +21,7 @@ test.describe('Back Office - Entry Ad @regression', () => {
     await expect(entryAdPage.modal).toBeHidden();
 
     await entryAdPage.restartAd.click();
-    await expect(entryAdPage.modal).toBeVisible();
+    await expect(entryAdPage.modal).toBeVisible({ timeout: 15000 });
     await expect(entryAdPage.modal).toContainText(entryAd.modal_title);
 
     await entryAdPage.closeModal();

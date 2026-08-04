@@ -82,7 +82,7 @@ jobs:
 
       - name: Generate Allure report
         if: always()
-        run: npx allure generate allure-results --clean -o allure-report
+        run: npx allure generate allure-results -o allure-report
 
       - name: Upload Playwright HTML report
         if: always()
@@ -165,7 +165,7 @@ jobs:
           path: .
 
       - name: Generate Allure report
-        run: npx allure generate allure-results --clean -o allure-report
+        run: npx allure generate allure-results -o allure-report
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
