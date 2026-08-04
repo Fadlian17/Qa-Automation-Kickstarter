@@ -1,6 +1,11 @@
 name: QA Automation CI
 
 on:
+  # Setiap hari pukul 07:00 WIB (00:00 UTC).
+  # Scope & env default untuk run terjadwal bisa diatur via repository
+  # variables: SCHEDULE_SCOPE dan SCHEDULE_TEST_ENV.
+  schedule:
+    - cron: '0 0 * * *'
   push:
     branches: [main]
   pull_request:
@@ -60,9 +65,9 @@ jobs:
 
       - name: Run tests
         env:
-          TEST_ENV: ${{ inputs.test_env || 'local' }}
+          TEST_ENV: ${{ github.event_name == 'schedule' && vars.SCHEDULE_TEST_ENV || inputs.test_env || 'local' }}
         run: |
-          SCOPE="${{ inputs.scope || 'full' }}"
+          SCOPE="${{ github.event_name == 'schedule' && vars.SCHEDULE_SCOPE || inputs.scope || 'full' }}"
           case "$SCOPE" in
             smoke)      COMMAND="npm run test:smoke" ;;
             regression) COMMAND="npm run test:regression" ;;
@@ -122,7 +127,8 @@ jobs:
           {
             echo "## QA Automation Run"
             echo ""
-            echo "Scope: \`${{ inputs.scope || 'full' }}\` | TEST_ENV: \`${{ inputs.test_env || 'local' }}\`"
+            echo "Trigger: \`${{ github.event_name }}\` (schedule = 07:00 WIB / 00:00 UTC)"
+            echo "Scope: \`${{ github.event_name == 'schedule' && vars.SCHEDULE_SCOPE || inputs.scope || 'full' }}\` | TEST_ENV: \`${{ github.event_name == 'schedule' && vars.SCHEDULE_TEST_ENV || inputs.test_env || 'local' }}\`"
             echo ""
             echo "Artifacts: **playwright-report**, **allure-report**, **allure-results**, **test-results** (report.json + PDF rekap)"
             echo ""
