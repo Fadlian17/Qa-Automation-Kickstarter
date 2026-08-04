@@ -162,10 +162,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: allure-results
-          path: .
+          path: ./allure-download
 
       - name: Generate Allure report
-        run: npx allure generate allure-results -o allure-report
+        run: npx allure generate allure-download -o allure-report
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
