@@ -1,8 +1,8 @@
 name: QA Automation CI
 
 on:
-  # Cron berjalan tiap jam (UTC). Guard di job `test` akan menjalankan test
-  # hanya ketika jam sekarang (WIB) == repository variable SCHEDULE_HOUR.
+  # Cron berjalan tiap jam (UTC). Job check-hour akan menjalankan test hanya
+  # ketika jam sekarang (WIB) == repository variable SCHEDULE_HOUR.
   # Ubah jam dari Settings -> Variables (tanpa edit file / trigger manual).
   # Default: 7 = 07:00 WIB.
   schedule:
@@ -35,7 +35,7 @@ on:
           - dev
           - staging
       hour:
-        description: 'Jam eksekusi (WIB). Untuk run manual hanya dicatat di summary; jadwal otomatis tetap memakai repository variable SCHEDULE_HOUR.'
+        description: 'Jam eksekusi (WIB). Saat manual run, nilai ini disimpan ke repository variable SCHEDULE_HOUR sehingga jadwal otomatis ikut berubah. Butuh secret VAR_PAT.'
         required: false
         default: '07'
         type: choice
@@ -66,13 +66,41 @@ on:
           - '23'
 
 concurrency:
-  group: qa-ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Schedule runs dipisah dari push/manual, dan tidak saling-cancel karena
+  # GitHub bisa menunda run schedule (antre berjam-jam) — cancel malah
+  # membuat run yang kita butuhkan batal sebelum sempat dieksekusi.
+  group: qa-ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'schedule' }}
 
 jobs:
+  set-schedule-hour:
+    name: Set Schedule Hour (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ secrets.VAR_PAT }}
+    steps:
+      - name: Update repository variable SCHEDULE_HOUR
+        continue-on-error: true
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::Secret VAR_PAT belum di-set. Jadwal otomatis TIDAK diupdate. Buat fine-grained PAT (Variables: Read and write) lalu simpan sebagai secret VAR_PAT."
+            exit 0
+          fi
+          HOUR=$(echo "${{ inputs.hour }}" | sed 's/^0*//')
+          [ -z "$HOUR" ] && HOUR=0
+          CURRENT=$(echo "${{ vars.SCHEDULE_HOUR }}" | sed 's/^0*//')
+          [ -z "$CURRENT" ] && CURRENT=7
+          if [ "$HOUR" = "$CURRENT" ]; then
+            echo "SCHEDULE_HOUR sudah ${CURRENT} (WIB). Tidak ada perubahan."
+          else
+            gh variable set SCHEDULE_HOUR --body "$HOUR" --repo "$GITHUB_REPOSITORY"
+            echo "SCHEDULE_HOUR diupdate: ${CURRENT} -> ${HOUR} (WIB)."
+          fi
+
   check-hour:
     name: Check Scheduled Hour
-    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
@@ -82,6 +110,11 @@ jobs:
         env:
           SCHEDULE_HOUR: ${{ vars.SCHEDULE_HOUR || '7' }}
         run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Event non-schedule, lanjut run."
+            exit 0
+          fi
           WIB_HOUR=$(( ($(date -u +%-H) + 7) % 24 ))
           if [ "$WIB_HOUR" -eq "$SCHEDULE_HOUR" ]; then
             echo "should_run=true" >> "$GITHUB_OUTPUT"
@@ -93,7 +126,7 @@ jobs:
 
   test:
     name: Run Playwright Tests
-    if: github.event_name != 'schedule' || needs.check-hour.outputs.should_run == 'true'
+    if: needs.check-hour.outputs.should_run == 'true'
     needs: check-hour
     runs-on: ubuntu-latest
     timeout-minutes: 120
